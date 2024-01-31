@@ -1,0 +1,158 @@
+<!-- <app-navbar></app-navbar>
+<div class="container mt-4">
+  <h1 class="alert alert-danger"><u>Function Page</u></h1>
+  <button class="btn btn-sm alert alert-success" (click)="goBack()">Go Back</button>
+  <div class="card col-lg-12">
+    <div class="card-body">
+      <div class="card col-lg-6">
+        <div class="card-body">
+          <form (submit)="addEventFunction()">
+            <h2>Add New Event Function</h2>
+            <div class="form-group col-lg-8">
+              <label for="eventName">Event Name</label>
+              <input type="text" class="form-control" id="eventName" [(ngModel)]="newEventFunction.name" name="name" />
+            </div>
+            <br/>
+            <div class="form-group col-lg-8">
+              <label for="eventDescription">Description</label>
+              <input type="text" class="form-control" id="description" [(ngModel)]="newEventFunction.description"
+                name="description" />
+            </div>
+            <br/>
+            <div class="form-group col-lg-8">
+              <label for="eventIcon">Icon</label>
+              <input type="text" class="form-control" id="eventIcon" [(ngModel)]="newEventFunction.icon" name="icon" />
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-success">Add</button>
+          </form>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <div class="form-group mb-4">
+        <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
+      </div>
+
+      <h2 class="alert alert-primary">Functions List</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>ID</th>
+              <th>Event Id</th>
+              <th>Event Name</th>
+              <th>Description</th>
+              <th>Icon</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr *ngFor="let eventFunction of eventFunctions  | search: searchText; let i = index">
+              <ng-container *ngIf="eventFunction.event_id==event_id">
+              <td>{{ i + 1 }}</td>
+              <td>{{ eventFunction.id }}</td>
+              <td>{{ eventFunction.event_id }}</td>
+              <td>{{ eventFunction.name }}</td>
+              <td>{{ eventFunction.description }}</td>
+              <td>{{ eventFunction.icon }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm"
+                routerLink="/functionSchedule/{{eventFunction.id}}/{{eventFunction.event_id}}">View</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-primary btn-sm" routerLink="/updatefun/{{ eventFunction.id}}">update</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-danger btn-sm" (click)="deleteEventFunction(eventFunction.id)">Delete</button>
+              </td>
+            </ng-container>
+            </tr>
+          </tbody> 
+        </table>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <h1 class="alert alert-danger"><u>Function Page</u></h1>
+  <button class="btn btn-sm alert alert-success" (click)="goBack()">Go Back</button>
+  <div class="card col-lg-12">
+    <div class="card-body">
+      <div class="card col-lg-6">
+        <div class="card-body">
+          <form (submit)="addEventFunction()">
+            <h2>Add New Event Function</h2>
+            <div class="form-group col-lg-8">
+              <label for="eventName">Event Name</label>
+              <input type="text" class="form-control" id="eventName" [(ngModel)]="newEventFunction.name" name="name" />
+            </div>
+            <br/>
+            <div class="form-group col-lg-8">
+              <label for="eventDescription">Description</label>
+              <input type="text" class="form-control" id="description" [(ngModel)]="newEventFunction.description"
+                name="description" />
+            </div>
+            <br/>
+            <div class="form-group col-lg-8">
+              <label for="eventIcon">Icon</label>
+              <input type="text" class="form-control" id="eventIcon" [(ngModel)]="newEventFunction.icon" name="icon" />
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-success">Add</button>
+          </form>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <br />
+      <div class="form-group mb-4">
+        <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
+      </div>
+
+      <h2 class="alert alert-primary">Functions List</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>ID</th>
+              <th>Event Id</th>
+              <th>Event Name</th>
+              <th>Description</th>
+              <th>Icon</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr *ngFor="let eventFunction of eventFunctions  | search: searchText; let i = index">
+              <ng-container *ngIf="eventFunction.event_id==event_id">
+              <td>{{ i + 1 }}</td>
+              <td>{{ eventFunction.id }}</td>
+              <td>{{ eventFunction.event_id }}</td>
+              <td>{{ eventFunction.name }}</td>
+              <td>{{ eventFunction.description }}</td>
+              <td>{{ eventFunction.icon }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm"
+                routerLink="/functionSchedule/{{eventFunction.id}}/{{eventFunction.event_id}}">View</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-primary btn-sm" routerLink="/updatefun/{{ eventFunction.id}}">update</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-danger btn-sm" (click)="deleteEventFunction(eventFunction.id)">Delete</button>
+              </td>
+            </ng-container>
+            </tr>
+          </tbody> 
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

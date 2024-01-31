@@ -1,0 +1,32 @@
+
+  <body>
+    <div class="wrapper">
+      <h2>Registration</h2> <div class="message" *ngIf="message">{{ message }}</div>
+      <form #userFormData="ngForm"  (ngSubmit)="onSubmit(userFormData.value)">
+        <div class="input-box">
+          <input type="text" placeholder="name" name="name" required [(ngModel)]="name">
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="email" name="email" [(ngModel)]="email">
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="phone" name="phone" [(ngModel)]="phone">
+        </div>
+        <div class="input-box">
+          <select id="userRole" placeholder="Role" name="role" [(ngModel)]="role" required>
+            <option value="event_organizer">Event Organizer</option>
+          </select>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="create password" name="password" [(ngModel)]="password">
+        </div>
+        <div class="input-box button">
+          <input type="Submit" value="register">
+        </div>
+        <div class="text">
+          <h3>Already have an account? <a routerLink="/">Login</a></h3>
+        </div>
+      </form>
+    </div>
+  </body>
+  

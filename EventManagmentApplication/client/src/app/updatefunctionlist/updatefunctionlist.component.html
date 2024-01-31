@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-center alert alert-danger"><u>Update Function</u></h2>
+      <button class="btn btn-sm alert alert-success" (click)="goBack()">Go Back</button>
+
+      <div class="card">
+        <div class="card-body">
+          <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <form [formGroup]="updateForm" (submit)="onFormSubmit(updateForm)">
+            <div class="row">
+              <div class="form-group col-lg-4">
+                <label for="name" class="form-label">Event Name</label>
+                <input type="text" class="form-control" id="name" name="name" formControlName="name" />
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description"
+                  formControlName="description" />
+              </div>
+              <div class="form-group col-lg-4">
+                <label for="icon" class="form-label">Icon</label>
+                <input type="text" class="form-control" id="icon" name="icon" formControlName="icon" />
+              </div>
+            </div>
+
+            <br />
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

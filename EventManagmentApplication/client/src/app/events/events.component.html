@@ -1,0 +1,246 @@
+<div class="container mt-4">
+  <div class="card col-lg-12">
+    <div class="card-body">
+      <form *ngIf="!isUpdateMode" (submit)="addEvent()">
+        <h2>Add New Event</h2>
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="eventUser_id">User Id</label>
+            <input type="text" class="form-control" id="eventUser_id" [(ngModel)]="newEvent.user_id" name="user_id" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="eventname">Event Name</label>
+            <input type="text" class="form-control" id="eventname" [(ngModel)]="newEvent.name" name="name" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="eventSubtitle">Event Subtitle</label>
+            <input type="text" class="form-control" id="eventSubtitle" [(ngModel)]="newEvent.subtitle"
+              name="subtitle" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="startDate">Start Date</label>
+            <input type="date" class="form-control" id="startDate" [(ngModel)]="newEvent.start_dt" name="start_dt" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="endDate">End Date</label>
+            <input type="date" class="form-control" id="endDate" [(ngModel)]="newEvent.end_dt" name="end_dt" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" [(ngModel)]="newEvent.description"
+              name="description"></textarea>
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="eventAddress">Event Address</label>
+            <input type="text" class="form-control" id="eventAddress" [(ngModel)]="newEvent.address" name="address" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="latitude">Latitude</label>
+            <input type="text" class="form-control" id="latitude" [(ngModel)]="newEvent.latitude" name="latitude" />
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="longitude">Longitude</label>
+            <input type="text" class="form-control" id="longitude" [(ngModel)]="newEvent.longitude" name="longitude" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="locationRange">Location Range</label>
+            <input type="text" class="form-control" id="locationRange" [(ngModel)]="newEvent.location_range"
+              name="location_range" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="contactPerson">Contact Person</label>
+            <input type="text" class="form-control" id="contactPerson" [(ngModel)]="newEvent.contact_person"
+              name="contact_person" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="contactPhone">Contact Phone</label>
+            <input type="text" class="form-control" id="contactPhone" [(ngModel)]="newEvent.contact_phone"
+              name="contact_phone" />
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="eventLogo">Event Logo</label>
+            <input type="text" class="form-control" id="eventLogo" [(ngModel)]="newEvent.logo" name="logo" />
+          </div>
+        </div>
+
+        <br />
+        <button type="submit" class="btn btn-success">Add</button>
+      </form>
+
+      <!-- update Form -->
+      <form *ngIf="isUpdateMode" (submit)="updateEvent()">
+        <h2>Update Event</h2>
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="id">Id</label>
+            <input type="text" class="form-control" id="id" [(ngModel)]="selectedEvent.id" name="id" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="eventUser_id">User Id</label>
+            <input type="text" class="form-control" id="eventUser_id" [(ngModel)]="selectedEvent.user_id"
+              name="user_id" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="eventName">Event Name</label>
+            <input type="text" class="form-control" id="eventName" [(ngModel)]="selectedEvent.name" name="name" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="eventSubtitle">Event Subtitle</label>
+            <input type="text" class="form-control" id="eventSubtitle" [(ngModel)]="selectedEvent.subtitle"
+              name="subtitle" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="startDate">Start Date</label>
+            <input type="date" class="form-control" id="startDate" [(ngModel)]="selectedEvent.start_dt"
+              name="start_dt" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="endDate">End Date</label>
+            <input type="date" class="form-control" id="endDate" [(ngModel)]="selectedEvent.end_dt" name="end_dt" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" [(ngModel)]="selectedEvent.description"
+              name="description"></textarea>
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="eventAddress">Event Address</label>
+            <input type="text" class="form-control" id="eventAddress" [(ngModel)]="selectedEvent.address"
+              name="address" />
+          </div>
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="form-group col-lg-3">
+            <label for="latitude">Latitude</label>
+            <input type="text" class="form-control" id="latitude" [(ngModel)]="selectedEvent.latitude"
+              name="latitude" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="longitude">Longitude</label>
+            <input type="text" class="form-control" id="longitude" [(ngModel)]="selectedEvent.longitude"
+              name="longitude" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="locationRange">Location Range</label>
+            <input type="text" class="form-control" id="locationRange" [(ngModel)]="selectedEvent.location_range"
+              name="location_range" />
+          </div>
+
+          <div class="form-group col-lg-3">
+            <label for="contactPerson">Contact Person</label>
+            <input type="text" class="form-control" id="contactPerson" [(ngModel)]="selectedEvent.contact_person"
+              name="contact_person" />
+          </div>
+
+        </div>
+
+
+        <div class="row">
+
+          <div class="form-group col-lg-3">
+            <label for="contactPhone">Contact Phone</label>
+            <input type="text" class="form-control" id="contactPhone" [(ngModel)]="selectedEvent.contact_phone"
+              name="contact_phone" />
+          </div>
+          <div class="form-group col-lg-3">
+            <label for="eventLogo">Event Logo</label>
+            <input type="text" class="form-control" id="eventLogo" [(ngModel)]="selectedEvent.logo" name="logo" />
+          </div>
+        </div>
+        <br />
+        <button type="button" class="btn btn-success" (click)="updateEvent()">Save</button>
+      </form>
+    </div>
+  </div>
+
+
+
+  <br />
+  <hr />
+  <br />
+  <h3><u>Event Information</u></h3>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User Id</th>
+          <th>Event Name</th>
+          <th>Subtitle</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Description</th>
+          <th>Address</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Location Range</th>
+          <th>Contact Person</th>
+          <th>Contact Phone</th>
+          <th>Logo</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events; let i = index">
+          <td>{{ event.id }}</td>
+          <td>{{ event.user_id }}</td>
+          <td>{{ event.name }}</td>
+          <td>{{ event.subtitle }}</td>
+          <td>{{ event.start_dt }}</td>
+          <td>{{ event.end_dt }}</td>
+          <td>{{ event.description }}</td>
+          <td>{{ event.address }}</td>
+          <td>{{ event.latitude }}</td>
+          <td>{{ event.longitude }}</td>
+          <td>{{ event.location_range }}</td>
+          <td>{{ event.contact_person }}</td>
+          <td>{{ event.contact_phone }}</td>
+          <td>{{ event.logo }}</td>
+
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="editEvent(event)">Update</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-danger btn-sm" (click)="deleteEvent(event)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

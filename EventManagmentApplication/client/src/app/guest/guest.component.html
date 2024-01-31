@@ -1,0 +1,141 @@
+<div class="container mt-4">
+    <div class="card col-lg-6">
+      <div class="card-body">
+        <form *ngIf="!isUpdateMode" (submit)="addGuest()">
+            <h2>Add New Guest</h2>
+            <div class="form-group col-lg-8">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" [(ngModel)]="newGuest.name" name="name" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="event_id">Event ID</label>
+              <input type="text" class="form-control" id="event_id" [(ngModel)]="newGuest.event_id" name="event_id" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="unique_code">Unique Code</label>
+              <input type="text" class="form-control" id="unique_code" [(ngModel)]="newGuest.unique_code" name="unique_code" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="designation">Designation</label>
+              <input type="text" class="form-control" id="designation" [(ngModel)]="newGuest.designation" name="designation" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" id="email" [(ngModel)]="newGuest.email" name="email" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="phone">Phone</label>
+              <input type="text" class="form-control" id="phone" [(ngModel)]="newGuest.phone" name="phone" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" id="address" [(ngModel)]="newGuest.address" name="address" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="type">Guest Type</label>
+              <input type="text" class="form-control" id="type" [(ngModel)]="newGuest.type" name="type" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="company">Company</label>
+              <input type="text" class="form-control" id="company" [(ngModel)]="newGuest.company" name="company" />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-success">Add</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-success" (click)="CSV()"> Create CSV File</button>
+          </form>
+  
+          <form *ngIf="isUpdateMode" (submit)="updateGuest()">
+            <h2>Update Guest</h2>
+            <div class="form-group col-lg-8">
+                <div class="form-group col-lg-8">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" [(ngModel)]="selectedGuest.id" name="id" />
+                  </div>
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" [(ngModel)]="selectedGuest.name" name="name" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="event_id">Event ID</label>
+              <input type="text" class="form-control" id="event_id" [(ngModel)]="selectedGuest.event_id" name="event_id" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="unique_code">Unique Code</label>
+              <input type="text" class="form-control" id="unique_code" [(ngModel)]="selectedGuest.unique_code" name="unique_code" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="designation">Designation</label>
+              <input type="text" class="form-control" id="designation" [(ngModel)]="selectedGuest.designation" name="designation" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" id="email" [(ngModel)]="selectedGuest.email" name="email" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="phone">Phone</label>
+              <input type="text" class="form-control" id="phone" [(ngModel)]="selectedGuest.phone" name="phone" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="address">Address</label>
+              <input type="text" class="form-control" id="address" [(ngModel)]="selectedGuest.address" name="address" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="type">Guest Type</label>
+              <input type="text" class="form-control" id="type" [(ngModel)]="selectedGuest.type" name="type" />
+            </div>
+            <div class="form-group col-lg-8">
+              <label for="company">Company</label>
+              <input type="text" class="form-control" id="company" [(ngModel)]="selectedGuest.company" name="company" />
+            </div>
+            <br />
+            <button type="submit" class="btn btn-success">Save</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-success" (click)="CSV()"> Create CSV File</button>
+          </form>
+      </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <h2>Guest Information</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Event ID</th>
+            <th>Unique Code</th>
+            <th>Designation</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Guest Type</th>
+            <th>Company</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let guest of guests; let i = index">
+            <td>{{ guest.id }}</td>
+            <td>{{ guest.name }}</td>
+            <td>{{ guest.event_id }}</td>
+            <td>{{ guest.unique_code }}</td>
+            <td>{{ guest.designation }}</td>
+            <td>{{ guest.email }}</td>
+            <td>{{ guest.phone }}</td>
+            <td>{{ guest.address }}</td>
+            <td>{{ guest.type }}</td>
+            <td>{{ guest.company }}</td>
+
+            <td>
+              <button class="btn btn-primary btn-sm" (click)="editGuest(guest)">Update</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-danger btn-sm" (click)="deleteGuest(guest.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+  

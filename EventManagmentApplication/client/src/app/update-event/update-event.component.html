@@ -1,0 +1,124 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h2 class="text-center alert alert-danger"><u>Update Event</u></h2> <button
+                class="btn btn-sm alert alert-success" (click)="goBack()">Go Back</button>
+
+            <div class="card">
+                <div class="card-body">
+                    <div *ngIf="successMessage" class="alert alert-success">
+                        {{ successMessage }}
+                    </div>
+
+                    <div *ngIf="errorMessage" class="alert alert-danger">
+                        {{ errorMessage }}
+                    </div>
+
+
+                    <form [formGroup]="updateForm" (submit)="onFormSubmit(updateForm)">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="eventName">Event Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Enter Event Name" [value]="userName" formControlName="name" ngModel
+                                    required />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="eventSubtitle">Event Subtitle</label>
+                                <input type="text" class="form-control" id="eventSubtitle" [value]="subtitle"
+                                    name="subtitle" placeholder="Enter Event Subtitle" formControlName="subtitle"
+                                    ngModel required />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" class="form-control" id="startDate" formControlName="start_dt"
+                                    [value]="start_dt" name="start_dt" ngModel required />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="endDate">End Date</label>
+                                <input type="date" class="form-control" [value]="end_dt" id="endDate"
+                                    formControlName="end_dt" name="end_dt" ngModel required />
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" id="description" formControlName="description"
+                                    name="description" [value]="description" ngModel required></textarea>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label for="eventAddress">Event Address</label>
+                                <input type="text" class="form-control" id="eventAddress" formControlName="address"
+                                    name="address" [value]="address" ngModel required />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- <div class="card">
+    <div class="card-body">
+        <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+
+        <div class="contener-fluid"></div>
+        <form [formGroup]="updateForm" (submit)="onFormSubmit(updateForm)">
+            <h2>Update Event</h2>
+            <div class="row">
+                <div class="form-group col-lg-3">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Event Name"
+                        [value]="userName" formControlName="name" ngModel required />
+                </div>
+                <div class="form-group col-lg-3">
+                    <label for="eventSubtitle">Event Subtitle</label>
+                    <input type="text" class="form-control" id="eventSubtitle" [value]="subtitle" name="subtitle"
+                        placeholder="Enter Event Subtitle" formControlName="subtitle" ngModel required />
+                </div>
+                <div class="form-group col-lg-3">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" class="form-control" id="startDate" formControlName="start_dt" [value]="start_dt"
+                        name="start_dt" ngModel required />
+                </div>
+                <div class="form-group col-lg-3">
+                    <label for="endDate">End Date</label>
+                    <input type="date" class="form-control" [value]="end_dt" id="endDate" formControlName="end_dt"
+                        name="end_dt" ngModel required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-lg-3">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" formControlName="description" name="description"
+                        [value]="description" ngModel required></textarea>
+                </div>
+                <div class="form-group col-lg-3">
+                    <label for="eventAddress">Event Address</label>
+                    <input type="text" class="form-control" id="eventAddress" formControlName="address" name="address"
+                        [value]="address" ngModel required />
+                </div>
+
+            </div>
+            <br />
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+
+</div> -->

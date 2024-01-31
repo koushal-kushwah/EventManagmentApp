@@ -1,0 +1,297 @@
+<app-navbar></app-navbar>
+
+<div class="row">
+    <div class="col-lg-2 s1 bg-primary">
+    </div>
+    <div class="col-lg-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <h1 class="alert alert-danger"><u>Event Page</u></h1>
+    <div class="card">
+
+        <div class="card-body">
+            <h1 class="alert alert-success">Welcome to login<span>&nbsp;&nbsp;</span>{{ userName }}</h1>
+
+            <div class="card col-lg-8">
+                <div class="card-body">
+                    <form (submit)="addEvent()">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="name" class="form-label">Event Name</label>
+                                <input type="text" class="form-control" id="name" [(ngModel)]="newEvent.name"
+                                    name="name" />
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="subtitle" class="form-label">Event Subtitle</label>
+                                <input type="text" class="form-control" id="subtitle" [(ngModel)]="newEvent.subtitle"
+                                    name="subtitle" />
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="start_dt" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="start_dt" [(ngModel)]="newEvent.start_dt"
+                                    name="start_dt" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="end_dt" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="end_dt" [(ngModel)]="newEvent.end_dt"
+                                    name="end_dt" />
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" [(ngModel)]="newEvent.description"
+                                    name="description"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="address" class="form-label">Event Address</label>
+                                <input type="text" class="form-control" id="address" [(ngModel)]="newEvent.address"
+                                    name="address" />
+                            </div>
+                        </div>
+
+                        <br />
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </form>
+
+                </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="form-group mb-4">
+                <input class="form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
+            </div>
+
+            <h2 class="alert alert-primary">Event List</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered" *ngIf="(users | search: searchText).length > 0 else noResults">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User Id</th>
+                            <th>Event Name</th>
+                            <th>Subtitle</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Description</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of (users | search: searchText)">
+                            <ng-container *ngIf="user.user_id == eventpar">
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.user_id }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.subtitle }}</td>
+                                <td>{{ user.start_dt | date:'dd/MM/yyyy' }}</td>
+                                <td>{{ user.end_dt | date:'dd/MM/yyyy' }}</td>
+                                <td>{{ user.description }}</td>
+                                <td>{{ user.address }}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm"
+                                        [routerLink]="'/eventfunction/' + user.id">View</button>
+                                    &nbsp;&nbsp;
+                                    <button class="btn btn-primary btn-sm"
+                                        [routerLink]="'/update/' + user.id">Update</button>
+                                    &nbsp;&nbsp;
+                                    <button class="btn btn-danger btn-sm" (click)="deleteEvent(user.id)">Delete</button>
+                                    &nbsp;&nbsp;
+                                </td>
+                            </ng-container>
+                        </tr>
+                    </tbody>
+                    <ng-template #noResults>
+                        <P>Result Not Found.</P>>
+                    </ng-template>
+                </table>
+                <!-- <mat-paginator #paginator [pageSizeOptions]="[2, 4, 6]" showFirstLastButtons></mat-paginator> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
+<app-navbar></app-navbar>
+
+<div class="row">
+    <div class="col-lg-2 s1 bg-primary">
+    </div>
+    <div class="col-lg-10">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <h1 class="alert alert-danger"><u>Event Page</u></h1>
+    <div class="card">
+
+        <div class="card-body">
+            <h1 class="alert alert-success">Welcome to login<span>&nbsp;&nbsp;</span>{{ userName }}</h1>
+
+            <div class="card col-lg-8">
+                <div class="card-body">
+                    <form (submit)="addEvent()">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="name" class="form-label">Event Name</label>
+                                <input type="text" class="form-control" id="name" [(ngModel)]="newEvent.name"
+                                    name="name" />
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="subtitle" class="form-label">Event Subtitle</label>
+                                <input type="text" class="form-control" id="subtitle" [(ngModel)]="newEvent.subtitle"
+                                    name="subtitle" />
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="start_dt" class="form-label">Start Date</label>
+                                <input type="date" class="form-control" id="start_dt" [(ngModel)]="newEvent.start_dt"
+                                    name="start_dt" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label for="end_dt" class="form-label">End Date</label>
+                                <input type="date" class="form-control" id="end_dt" [(ngModel)]="newEvent.end_dt"
+                                    name="end_dt" />
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" [(ngModel)]="newEvent.description"
+                                    name="description"></textarea>
+                            </div>
+
+                            <div class="form-group col-lg-4">
+                                <label for="address" class="form-label">Event Address</label>
+                                <input type="text" class="form-control" id="address" [(ngModel)]="newEvent.address"
+                                    name="address" />
+                            </div>
+                        </div>
+
+                        <br />
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </form>
+
+                </div>
+            </div>
+
+            <br />
+            <br />
+
+            <div class="form-group mb-4">
+                <mat-form-field>
+                    <input matInput [(ngModel)]="searchText" placeholder="Search" (input)="applyFilter()">
+                </mat-form-field>
+            </div>
+
+            <h2 class="alert alert-primary">Event List</h2>
+
+            <div class="table-responsive">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let emprow; columns: displayedColumns"></tr>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> ID</th>
+                        <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="user_id">
+                        <th mat-header-cell *matHeaderCellDef>User_id</th>
+                        <td mat-cell *matCellDef="let user">{{ user.user_id }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Name</th>
+                        <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="address">
+                        <th mat-header-cell *matHeaderCellDef> Address</th>
+                        <td mat-cell *matCellDef="let user">{{ user.address ? user.address : 'null' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="created_dt">
+                        <th mat-header-cell *matHeaderCellDef> created_dt</th>
+                        <td mat-cell *matCellDef="let user">{{user.created_dt}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="updated_dt">
+                        <th mat-header-cell *matHeaderCellDef> updated_dt</th>
+                        <td mat-cell *matCellDef="let user">{{user.updated_dt}}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="subtitle">
+                        <th mat-header-cell *matHeaderCellDef> subtitle</th>
+                        <td mat-cell *matCellDef="let user">{{ user.subtitle ? user.subtitle : 'null' }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="start_dt">
+                        <th mat-header-cell *matHeaderCellDef> start_dt</th>
+                        <td mat-cell *matCellDef="let user">{{ user.start_dt ? (user.start_dt | date:'dd-MM-yyyy') :
+                            'null' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="end_dt">
+                        <th mat-header-cell *matHeaderCellDef> end_dt</th>
+                        <td mat-cell *matCellDef="let user">{{ user.end_dt ? (user.end_dt | date:'dd-MM-yyyy') : 'null'
+                            }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef> description</th>
+                        <td mat-cell *matCellDef="let user">{{ user.description ? user.description : 'null' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="longitude">
+                        <th mat-header-cell *matHeaderCellDef> longitude</th>
+                        <td mat-cell *matCellDef="let user">{{ user.longitude ? user.longitude : 'null' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="location_range">
+                        <th mat-header-cell *matHeaderCellDef> location_range</th>
+                        <td mat-cell *matCellDef="let user">{{ user.location_range ? user.location_range : 'null' }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="contact_person">
+                        <th mat-header-cell *matHeaderCellDef> contact_person</th>
+                        <td mat-cell *matCellDef="let user">{{ user.contact_person ? user.contact_person : 'null' }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="contact_phone">
+                        <th mat-header-cell *matHeaderCellDef> contact_phone</th>
+                        <td mat-cell *matCellDef="let user">{{ user.contact_phone ? user.contact_phone : 'null' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="logo">
+                        <th mat-header-cell *matHeaderCellDef> logo</th>
+                        <td mat-cell *matCellDef="let user">{{ user.logo ? user.logo : 'null' }}</td>
+                    </ng-container>
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef > Action </th>
+
+
+                      
+                        <td mat-cell *matCellDef="let user" class="icon_manage">
+                            <button mat-icon-button  [routerLink]="'/eventfunction/' + user.id" title="View" >
+                                <mat-icon color="primary">visibility</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" [routerLink]="'/update/' + user.id" title="Update" >
+                                <mat-icon color="primary">edit</mat-icon>
+                            </button>
+                            <button mat-icon-button (click)="deleteEvent(user.id)" title="Delete" color="warn">
+                                <mat-icon color="warn">delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                   
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<mat-paginator #paginator [pageSizeOptions]="[2, 4, 8]" showFirstLastButtons></mat-paginator> -->
